@@ -1,0 +1,13 @@
+name        tar
+version     1.35
+release     1
+description GNU tar: archiving utility
+
+source      https://ftp.gnu.org/gnu/tar/tar-${version}.tar.xz
+hash        sha256:4d62ff37342ec7aed748535323930c7cf94acf71c3591882b26a7ea50f3edc16
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-acl --without-selinux
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
