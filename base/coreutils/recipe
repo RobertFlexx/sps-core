@@ -1,0 +1,13 @@
+name        coreutils
+version     9.11
+release     1
+description GNU core utilities: file, text, and shell utilities
+
+source      https://ftp.gnu.org/gnu/coreutils/coreutils-${version}.tar.gz
+hash        sha256:2033b8a3049c06bff49a9e3cea72bdf4683bcd0cbeb975211dd56dbaf8b736ae
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --enable-install-program=hostname
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

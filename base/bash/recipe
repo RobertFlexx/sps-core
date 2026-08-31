@@ -1,0 +1,13 @@
+name        bash
+version     5.3
+release     1
+description GNU Bourne Again SHell
+
+source      https://ftp.gnu.org/gnu/bash/bash-${version}.tar.gz
+hash        sha256:0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --without-bash-malloc --with-curses
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG" && ln -sfv bash "$PKG/usr/bin/sh"
