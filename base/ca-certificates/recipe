@@ -1,0 +1,15 @@
+name        ca-certificates
+version     20260813
+release     1
+arch        any
+description Mozilla root certificate authority bundle
+
+source      https://curl.se/ca/cacert-2026-08-13.pem
+hash        sha256:f66dff1bdf8f96060b8177976f8b7d9254bc89bc4db933d769f7384d28480bc9
+
+depend      filesystem
+
+install     mkdir -p "$PKG/etc/ssl/certs"
+install     install -m 0644 "$SRC/cacert-2026-08-13.pem" \
+            "$PKG/etc/ssl/certs/ca-certificates.crt"
+install     ln -s certs/ca-certificates.crt "$PKG/etc/ssl/cert.pem"
