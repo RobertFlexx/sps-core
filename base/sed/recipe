@@ -1,0 +1,13 @@
+name        sed
+version     4.10
+release     1
+description GNU sed: stream editor for filtering and transforming text
+
+source      https://ftp.gnu.org/gnu/sed/sed-${version}.tar.xz
+hash        sha256:b8e72182b2ec96a3574e2998c47b7aaa64cc20ce000d8e9ac313cc07cecf28c7
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        findutils
+version     4.11.0
+release     1
+description GNU findutils: find, locate, updatedb and xargs
+
+source      https://ftp.gnu.org/gnu/findutils/findutils-${version}.tar.xz
+hash        sha256:bfd19cb06cc71f3352d567e90284d8cdac02ac89774bbeadf0b533b0c11432fd
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
