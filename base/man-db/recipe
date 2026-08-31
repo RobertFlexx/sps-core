@@ -1,0 +1,17 @@
+name        man-db
+version     2.13.1
+release     1
+description man-db: man page manual database utilities
+
+source      https://download.savannah.gnu.org/releases/man-db/man-db-${version}.tar.xz
+hash        sha256:8afebb6f7eb6bb8542929458841f5c7e6f240e30c86358c1fbcefbea076c87d9
+
+depend      filesystem
+depend      groff
+depend      libpipeline
+depend      gzip
+depend      xz
+
+configure   ./configure --prefix=/usr --disable-cache-owner
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

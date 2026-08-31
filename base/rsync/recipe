@@ -1,0 +1,13 @@
+name        rsync
+version     3.5.0
+release     1
+description rsync: fast incremental file transfer tool
+
+source      https://rsync.samba.org/ftp/rsync/src/rsync-${version}.tar.gz
+hash        sha256:c7ffd1ef653e99540f661e47cb00b7f9cad1ee6b972399b16f93d672656e0d33
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

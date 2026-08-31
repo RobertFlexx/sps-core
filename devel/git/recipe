@@ -1,0 +1,16 @@
+name        git
+version     2.55.0
+release     1
+description git: distributed version control system
+
+source      https://www.kernel.org/pub/software/scm/git/git-${version}.tar.xz
+hash        sha256:457fdb04dc8728e007d4688695e6912e6f680727920f2a40bf11eacc17505357
+
+depend      filesystem
+depend      zlib
+depend      openssl
+depend      curl
+
+configure   ./configure --prefix=/usr --with-openssl --without-tcltk
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

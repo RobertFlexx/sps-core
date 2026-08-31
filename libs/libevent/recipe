@@ -1,0 +1,13 @@
+name        libevent
+version     2.1.12
+release     1
+description libevent: asynchronous event notification library
+
+source      https://github.com/libevent/libevent/releases/download/release-${version}-stable/libevent-${version}-stable.tar.gz
+hash        sha256:92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-static --disable-openssl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

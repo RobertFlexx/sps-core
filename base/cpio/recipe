@@ -1,0 +1,13 @@
+name        cpio
+version     2.15
+release     1
+description GNU cpio: archive file copying program
+
+source      https://ftp.gnu.org/gnu/cpio/cpio-${version}.tar.gz
+hash        sha256:efa50ef983137eefc0a02fdb51509d624b5e3295c980aa127ceee4183455499e
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr CFLAGS="-O2 -std=gnu17"
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

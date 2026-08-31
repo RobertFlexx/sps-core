@@ -1,0 +1,13 @@
+name        groff
+version     1.24.1
+release     1
+description groff: the GNU typesetting system
+
+source      https://ftp.gnu.org/gnu/groff/groff-${version}.tar.gz
+hash        sha256:74e2819795b6aff431aeac983d63a9c8968eeaba2a2eba7df8ba4c7b41e7cfd8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        psmisc
+version     23.7
+release     1
+description psmisc: process management utilities
+
+source      https://gitlab.com/psmisc/psmisc/-/archive/v${version}/psmisc-v${version}.tar.gz
+hash        sha256:8f2526ce7ac6ef4976454cd63095fa10e467ef745cf33dc4f91df0bd7b10b905
+
+depend      filesystem
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

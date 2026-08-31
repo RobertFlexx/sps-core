@@ -1,0 +1,13 @@
+name        tree
+version     2.3.2
+release     1
+description tree: recursive directory listing utility
+
+source      https://gitlab.com/OldManProgrammer/unix-tree/-/archive/${version}/unix-tree-${version}.tar.bz2
+hash        sha256:7e6bd141e89b6d951da8ce1757d16b832fb52ef69a7259a23669981f22a49cbb
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS"
+install     install -Dm755 tree "$PKG/usr/bin/tree"
+install     install -Dm644 doc/tree.1 "$PKG/usr/share/man/man1/tree.1"

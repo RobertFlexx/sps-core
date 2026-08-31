@@ -1,0 +1,13 @@
+name        util-linux
+version     2.42.2
+release     1
+description util-linux: miscellaneous system utilities
+
+source      https://www.kernel.org/pub/linux/utils/util-linux/v2.42/util-linux-${version}.tar.xz
+hash        sha256:03a05d3adf9602ef128f2da05b84b3205ce60c351e5737c0370f74000679ce8a
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-static --without-python --disable-wall --disable-makeinstall-chown
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

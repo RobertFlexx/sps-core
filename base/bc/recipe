@@ -1,0 +1,13 @@
+name        bc
+version     1.08.1
+release     1
+description GNU bc: arbitrary precision calculator language
+
+source      https://ftp.gnu.org/gnu/bc/bc-${version}.tar.xz
+hash        sha256:515430115b3334c636317503460a0950dff79940aa3259ce2c1aa67c2881d023
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
