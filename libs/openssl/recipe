@@ -1,0 +1,13 @@
+name        openssl
+version     4.0.2
+release     1
+description OpenSSL: cryptography and TLS toolkit
+
+source      https://github.com/openssl/openssl/releases/download/openssl-${version}/openssl-${version}.tar.gz
+hash        sha256:736b467530f916737b7031310ccb21d8218c6229e61e8e160cd1d3458cd543a8
+
+depend      filesystem
+
+configure   ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

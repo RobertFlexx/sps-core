@@ -1,0 +1,14 @@
+name        wget
+version     1.25.0
+release     1
+description GNU wget: network download utility
+
+source      https://ftp.gnu.org/gnu/wget/wget-${version}.tar.gz
+hash        sha256:766e48423e79359ea31e41db9e5c289675947a7fcf2efdcedb726ac9d0da3784
+
+depend      filesystem
+depend      openssl
+
+configure   ./configure --prefix=/usr --with-ssl=openssl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
