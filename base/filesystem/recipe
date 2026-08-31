@@ -1,7 +1,7 @@
 # SPS-owned base filesystem hierarchy and initial static configuration.
 name        filesystem
 version     1.0
-release     1
+release     2
 arch        any
 description Base filesystem hierarchy and static system configuration
 
@@ -20,11 +20,6 @@ install     ln -s usr/sbin "$PKG/sbin"
 install     ln -s ../run "$PKG/var/run"
 install     ln -s ../run/lock "$PKG/var/lock"
 install     ln -s ../proc/self/mounts "$PKG/etc/mtab"
-install     printf '%s\n' \
-            'NAME="SPS Linux"' \
-            'ID=sps' \
-            'PRETTY_NAME="SPS Linux"' \
-            > "$PKG/etc/os-release"
 install     printf '%s\n' \
             '# Static filesystems are configured here.' \
             > "$PKG/etc/fstab"
@@ -59,6 +54,5 @@ install     printf '%s\n' \
             'nogroup:!::' \
             > "$PKG/etc/gshadow"
 install     chmod 0644 "$PKG/etc/group" "$PKG/etc/hosts" \
-            "$PKG/etc/nsswitch.conf" "$PKG/etc/os-release" \
-            "$PKG/etc/passwd"
+            "$PKG/etc/nsswitch.conf" "$PKG/etc/passwd"
 install     chmod 0600 "$PKG/etc/gshadow" "$PKG/etc/shadow"
