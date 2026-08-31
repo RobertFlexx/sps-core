@@ -1,6 +1,6 @@
 name        dhcpcd
 version     10.2.4
-release     1
+release     2
 description dhcpcd: DHCP client
 
 source      https://github.com/NetworkConfiguration/dhcpcd/archive/refs/tags/v10.2.4.tar.gz
@@ -11,3 +11,6 @@ depend      filesystem
 configure   ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/dhcpcd --dbdir=/var/lib/dhcpcd
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/dhcpcd.service" "$PKG/usr/lib/systemd/system/dhcpcd.service"
+install     install -m 0755 "$SRC/files/openrc-dhcpcd" "$PKG/etc/init.d/dhcpcd"

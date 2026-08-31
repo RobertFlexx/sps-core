@@ -1,6 +1,6 @@
 name        dbus
 version     1.16.2
-release     1
+release     2
 description dbus: message bus
 
 source      https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
@@ -12,3 +12,6 @@ depend      expat
 configure   meson setup build --prefix=/usr --buildtype=release -Dsystemd=disabled -Dselinux=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/dbus.service" "$PKG/usr/lib/systemd/system/dbus.service"
+install     install -m 0755 "$SRC/files/openrc-dbus" "$PKG/etc/init.d/dbus"

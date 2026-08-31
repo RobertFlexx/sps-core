@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenSSH server daemon
+After=network.target
+
+[Service]
+ExecStartPre=/bin/sh -c 'if command -v ssh-keygen >/dev/null 2>&1; then ssh-keygen -A; fi'
+ExecStart=/usr/sbin/sshd -D
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

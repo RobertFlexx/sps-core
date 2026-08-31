@@ -1,0 +1,18 @@
+#!/sbin/openrc-run
+description="OpenSSH server"
+command="/usr/sbin/sshd"
+command_args="-D"
+command_background="yes"
+pidfile="/run/sshd.pid"
+
+depend() {
+	use net
+	after net
+}
+
+start_pre() {
+	if command -v ssh-keygen >/dev/null 2>&1; then
+		ssh-keygen -A
+	fi
+	mkdir -p /var/lib/sshd
+}
