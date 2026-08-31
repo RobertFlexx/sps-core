@@ -1,0 +1,13 @@
+name        which
+version     2.25
+release     1
+description which: locate a command in PATH
+
+source      https://ftp.gnu.org/gnu/which/which-${version}.tar.gz
+hash        sha256:1cb83e4f702e60b8211ab5ec4c2afbab1b1dec80209456a7d2faf7584ed225ea
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        less
+version     704
+release     1
+description less: terminal pager for viewing text files
+
+source      https://www.greenwoodsoftware.com/less/less-${version}.tar.gz
+hash        sha256:20a0b0a2bb2525fa53c7eee9beb854b4c9cf172eabb209af7020743547bfe9fb
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --with-secure-sort
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
