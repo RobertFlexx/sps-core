@@ -1,0 +1,13 @@
+name        make
+version     4.4.1
+release     1
+description GNU make: build automation tool
+
+source      https://ftp.gnu.org/gnu/make/make-${version}.tar.gz
+hash        sha256:dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
