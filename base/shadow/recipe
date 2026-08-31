@@ -1,0 +1,14 @@
+name        shadow
+version     4.20.2
+release     1
+description shadow: user and group account tools
+
+source      https://github.com/shadow-maint/shadow/releases/download/4.20.2/shadow-4.20.2.tar.xz
+hash        sha256:b89f432b75ae55a2d852b446d0365484795fdf533ab97d550e325fa15594a224
+
+depend      filesystem
+depend      linux-pam
+
+configure   ./configure --prefix=/usr --sysconfdir=/etc --disable-static --with-libpam --without-selinux --without-libbsd --with-group-name-max-length=32 --without-nscd
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

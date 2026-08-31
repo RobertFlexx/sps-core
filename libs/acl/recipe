@@ -1,0 +1,14 @@
+name        acl
+version     2.3.2
+release     1
+description acl: POSIX access control lists
+
+source      http://deb.debian.org/debian/pool/main/a/acl/acl_2.3.2.orig.tar.xz
+hash        sha256:97203a72cae99ab89a067fe2210c1cbf052bc492b479eca7d226d9830883b0bd
+
+depend      filesystem
+depend      attr
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

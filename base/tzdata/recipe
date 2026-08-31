@@ -1,0 +1,16 @@
+name        tzdata
+version     2026c
+release     1
+arch        any
+description tzdata: IANA timezone data
+
+source      https://data.iana.org/time-zones/releases/tzdata2026c.tar.gz
+hash        sha256:e4a178a4477f3d0ea77cc31828ff72aa38feff8d61aa13e7e99e142e9d902be4
+
+depend      filesystem
+depend      tzcode
+
+build       true
+install     mkdir -p "$PKG/usr/share/zoneinfo/posix" "$PKG/usr/share/zoneinfo/right"
+install     for tz in etcetera southamerica northamerica europe africa antarctica asia australasia backward factory; do [ -f "$tz" ] && zic -d "$PKG/usr/share/zoneinfo" "$tz"; done
+install     if [ -f zone.tab ]; then cp zone.tab zone1970.tab iso3166.tab "$PKG/usr/share/zoneinfo/"; fi

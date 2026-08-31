@@ -1,0 +1,12 @@
+name        libargon2
+version     20190702
+release     1
+description libargon2: Argon2 password hashing
+
+source      https://github.com/P-H-C/phc-winner-argon2/archive/refs/tags/20190702.tar.gz
+hash        sha256:daf972a89577f8772602bf2eb38b6a3dd3d922bf5724d45e7f9589b5e830442c
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" LIBRARY_REL=lib
+install     make install DESTDIR="$PKG" PREFIX=/usr LIBRARY_REL=lib

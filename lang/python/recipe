@@ -1,0 +1,20 @@
+name        python
+version     3.14.7
+release     1
+description python: Python interpreter
+
+source      https://www.python.org/ftp/python/3.14.7/Python-3.14.7.tar.xz
+hash        sha256:3b48dac8fb59f62eaa67ac83c1eb12bda1b7a08406dd286e252c11a66be27f81
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      ncurses
+depend      readline
+depend      sqlite
+depend      libffi
+depend      expat
+
+configure   ./configure --prefix=/usr --enable-shared --with-ensurepip=install --with-system-expat --with-system-ffi
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

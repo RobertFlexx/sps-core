@@ -1,0 +1,14 @@
+name        usbutils
+version     018
+release     1
+description usbutils: lsusb
+
+source      https://mirrors.edge.kernel.org/pub/linux/utils/usb/usbutils/usbutils-018.tar.xz
+hash        sha256:83f68b59b58547589c00266e82671864627593ab4362d8c807f50eea923cad93
+
+depend      filesystem
+depend      libusb
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

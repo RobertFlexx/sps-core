@@ -1,0 +1,13 @@
+name        kbd
+version     2.7.1
+release     1
+description kbd: keyboard and console tools
+
+source      https://mirrors.edge.kernel.org/pub/linux/utils/kbd/kbd-2.7.1.tar.xz
+hash        sha256:f167d899d92b56ccf12f6f49355173f93870a95f15d8aeebf5fdcd28a621aca8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

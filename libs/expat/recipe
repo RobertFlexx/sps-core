@@ -1,0 +1,13 @@
+name        expat
+version     2.7.3
+release     1
+description expat: XML parser library
+
+source      https://github.com/libexpat/libexpat/releases/download/R_2_7_3/expat-2.7.3.tar.xz
+hash        sha256:71df8f40706a7bb0a80a5367079ea75d91da4f8c65c58ec59bcdfbf7decdab9f
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,15 @@
+name        cmake
+version     4.4.3
+release     1
+description cmake: cross-platform build system
+
+source      https://github.com/Kitware/CMake/releases/download/v4.4.3/cmake-4.4.3.tar.gz
+hash        sha256:c46400618b4f1f2b43507f24fb22f3ae830c3416cf23b776e16e1d413aa892f0
+
+depend      filesystem
+depend      openssl
+depend      ncurses
+
+configure   ./bootstrap --prefix=/usr --parallel="$MAKEJOBS" -- -DCMAKE_USE_OPENSSL=ON
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

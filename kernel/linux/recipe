@@ -1,0 +1,17 @@
+name        linux
+version     7.2.2
+release     1
+description linux: Linux kernel (does not run bootloader install)
+
+source      https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-${version}.tar.xz
+hash        sha256:7d0e7ce14f98c43efe880cffbf354a59be45928fdf7170d7333c374ae91c0d83
+
+depend      filesystem
+depend      kmod
+depend      busybox
+
+configure   make defconfig
+build       make -j"$MAKEJOBS"
+install     make INSTALL_MOD_PATH="$PKG" INSTALL_PATH="$PKG/boot" modules_install
+install     mkdir -p "$PKG/boot"
+install     cp arch/x86/boot/bzImage "$PKG/boot/vmlinuz-7.2.2"

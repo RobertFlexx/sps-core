@@ -1,0 +1,15 @@
+name        json-c
+version     0.18
+release     1
+description json-c: JSON C library
+
+source      https://github.com/json-c/json-c/archive/refs/tags/json-c-0.18-20240915.tar.gz
+hash        sha256:3112c1f25d39eca661fe3fc663431e130cc6e2f900c081738317fba49d29e298
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

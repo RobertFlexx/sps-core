@@ -1,0 +1,13 @@
+name        iproute2
+version     7.1.0
+release     1
+description iproute2: ip, ss, and tc
+
+source      https://mirrors.edge.kernel.org/pub/linux/utils/net/iproute2/iproute2-7.1.0.tar.xz
+hash        sha256:fd9fa1b95809417157ca83dd72957e3261bdbce896353cb936f80af0b33a4b5c
+
+depend      filesystem
+depend      libmnl
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

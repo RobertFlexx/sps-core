@@ -1,0 +1,13 @@
+name        attr
+version     2.5.2
+release     1
+description attr: extended filesystem attributes
+
+source      http://deb.debian.org/debian/pool/main/a/attr/attr_2.5.2.orig.tar.xz
+hash        sha256:f2e97b0ab7ce293681ab701915766190d607a1dba7fae8a718138150b700a70b
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

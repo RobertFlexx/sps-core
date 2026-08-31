@@ -1,0 +1,13 @@
+name        man-pages
+version     6.15
+release     1
+arch        any
+description man-pages: Linux man pages
+
+source      https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.15.tar.xz
+hash        sha256:03d8ebf618bd5df57cb4bf355efa3f4cd3a00b771efd623d4fd042b5dceb4465
+
+depend      filesystem
+
+build       true
+install     make prefix=/usr DESTDIR="$PKG" install

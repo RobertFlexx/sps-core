@@ -1,0 +1,14 @@
+name        meson
+version     1.12.0
+release     1
+arch        any
+description meson: Python-based build system
+
+source      https://github.com/mesonbuild/meson/archive/refs/tags/1.12.0.tar.gz
+hash        sha256:5ab1c86446d9dfe073f07141088cde545e43f8ddb2f97ebe3f600ab12e77ca1f
+
+depend      filesystem
+depend      python
+depend      ninja
+
+install     python3 -m pip install --no-build-isolation --no-deps --prefix=/usr --root="$PKG" .

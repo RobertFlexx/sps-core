@@ -1,0 +1,17 @@
+name        btrfs-progs
+version     6.15
+release     1
+description btrfs-progs: Btrfs tools
+
+source      https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v6.15.tar.xz
+hash        sha256:57da428dd2199fd88d83ecf1cad05678ce78640ef7e52d7633be9887cef674bb
+
+depend      filesystem
+depend      util-linux
+depend      zlib
+depend      zstd
+depend      lzo
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

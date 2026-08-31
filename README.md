@@ -10,7 +10,7 @@ identity; the category is not part of the name. Core uses these categories as
 packages are added:
 
 ```text
-base/  devel/  libs/  net/
+base/  boot/  devel/  fs/  kernel/  lang/  libs/  meta/  net/
 ```
 
 Category directories are created only when they contain a package.

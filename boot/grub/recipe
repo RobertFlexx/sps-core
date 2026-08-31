@@ -1,0 +1,13 @@
+name        grub
+version     2.12
+release     1
+description grub: bootloader files (does not run grub-install)
+
+source      https://ftp.gnu.org/gnu/grub/grub-2.12.tar.xz
+hash        sha256:f3c97391f7c4eaa677a78e090c7e97e6dc47b16f655f04683ebd37bef7fe0faa
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --sysconfdir=/etc --disable-werror --disable-efiemu
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

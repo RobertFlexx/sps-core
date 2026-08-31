@@ -1,0 +1,14 @@
+name        libnftnl
+version     1.2.9
+release     1
+description libnftnl: netfilter nf_tables library
+
+source      https://www.netfilter.org/projects/libnftnl/files/libnftnl-1.2.9.tar.xz
+hash        sha256:e8c216255e129f26270639fee7775265665a31b11aa920253c3e5d5d62dfc4b8
+
+depend      filesystem
+depend      libmnl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

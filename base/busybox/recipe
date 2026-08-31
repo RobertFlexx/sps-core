@@ -1,0 +1,13 @@
+name        busybox
+version     1.37.0
+release     1
+description busybox: tiny utilities
+
+source      https://busybox.net/downloads/busybox-1.37.0.tar.bz2
+hash        sha256:3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4
+
+depend      filesystem
+
+configure   make defconfig
+build       make -j"$MAKEJOBS"
+install     make CONFIG_PREFIX="$PKG" install

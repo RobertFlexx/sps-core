@@ -1,0 +1,14 @@
+name        libtool
+version     2.5.4
+release     1
+description libtool: GNU generic library support
+
+source      https://ftp.gnu.org/gnu/libtool/libtool-2.5.4.tar.xz
+hash        sha256:f81f5860666b0bc7d84baddefa60d1cb9fa6fceb2398cc3baca6afaa60266675
+
+depend      filesystem
+depend      m4
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

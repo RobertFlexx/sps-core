@@ -1,0 +1,13 @@
+name        gperf
+version     3.3
+release     1
+description gperf: perfect hash function generator
+
+source      https://ftp.gnu.org/gnu/gperf/gperf-3.3.tar.gz
+hash        sha256:fd87e0aba7e43ae054837afd6cd4db03a3f2693deb3619085e6ed9d8d9604ad8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

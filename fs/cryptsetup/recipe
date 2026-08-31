@@ -1,0 +1,19 @@
+name        cryptsetup
+version     2.8.1
+release     1
+description cryptsetup: LUKS disk encryption
+
+source      https://www.kernel.org/pub/linux/utils/cryptsetup/v2.8/cryptsetup-2.8.1.tar.xz
+hash        sha256:2c3379eb76597dcab50911449b013e2697c4bffcc716dbbf0d9b0e8fbbb46fb4
+
+depend      filesystem
+depend      openssl
+depend      lvm2
+depend      util-linux
+depend      json-c
+depend      popt
+depend      libargon2
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        dhcpcd
+version     10.2.4
+release     1
+description dhcpcd: DHCP client
+
+source      https://github.com/NetworkConfiguration/dhcpcd/archive/refs/tags/v10.2.4.tar.gz
+hash        sha256:85c8b2535ddf52091b30b31f29b0f9cafd9cd94dc6b78f1bd92db2afce4c1943
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/dhcpcd --dbdir=/var/lib/dhcpcd
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
