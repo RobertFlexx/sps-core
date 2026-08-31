@@ -1,0 +1,19 @@
+name        linux-desktop
+version     7.2.2
+release     1
+description linux-desktop: SPS Linux (Splux) daily-driver kernel
+
+source      https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-${version}.tar.xz
+hash        sha256:7d0e7ce14f98c43efe880cffbf354a59be45928fdf7170d7333c374ae91c0d83
+
+depend      filesystem
+depend      kmod
+depend      busybox
+
+configure   make defconfig
+configure   ./scripts/config --enable DRM --enable DRM_NOUVEAU --enable DRM_I915 --enable DRM_AMDGPU --enable FB_EFI --enable EFI --enable EFI_STUB --enable BLK_DEV_NVME --enable EXT4_FS --enable BTRFS_FS --enable XFS_FS --enable OVERLAY_FS --enable SQUASHFS --enable FUSE_FS --enable VFAT_FS --enable TMPFS --enable CGROUPS --enable NAMESPACES --enable NETFILTER --enable BRIDGE --enable VETH --enable TUN --enable SND --enable SND_HDA_INTEL --enable USB --enable USB_XHCI_HCD --enable HID --enable HID_GENERIC --enable INPUT_EVDEV --enable IWLWIFI --enable CFG80211 --enable MAC80211 --enable KVM --enable VIRTIO --enable VIRTIO_PCI --enable VIRTIO_NET --enable VIRTIO_BLK --enable FW_LOADER --enable MICROCODE --enable IKCONFIG --enable IKCONFIG_PROC --enable SYSFB_SIMPLEFB --enable DRM_BOCHS --enable DRM_VIRTIO_GPU
+configure   make olddefconfig
+build       make -j"$MAKEJOBS"
+install     make INSTALL_MOD_PATH="$PKG" INSTALL_PATH="$PKG/boot" modules_install
+install     mkdir -p "$PKG/boot"
+install     cp arch/x86/boot/bzImage "$PKG/boot/vmlinuz-desktop-7.2.2"

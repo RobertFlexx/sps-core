@@ -1,6 +1,6 @@
 name        base-system
 version     1.0
-release     1
+release     2
 arch        any
 description base-system: essential SPS userland
 
@@ -49,7 +49,6 @@ depend      bc
 depend      cpio
 depend      busybox
 depend      kmod
-depend      eudev
 depend      iproute2
 depend      dhcpcd
 depend      iputils

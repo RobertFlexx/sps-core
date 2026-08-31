@@ -1,9 +1,15 @@
 # SPS core package collection
 
-This repository contains the official SPS source definitions for the base
-system: the bootstrap toolchain, fundamental libraries and utilities, boot and
+This repository is the official base recipe tree for **SPS Linux**
+(informally Splux): bootstrap toolchain, libraries, utilities, boot and
 device infrastructure, networking, and SPS itself. It contains recipes and
 small supporting files, not source archives or binary packages.
+
+SPS the package system is separate from the distro. These recipes are ordinary
+SPS recipes, so a Linux From Scratch tree (or any other SPS root) can consume
+them. The `linux-desktop` and `linux-custom` kernels, and anything `setup`
+does with hostname, fstab, and init, are SPS Linux defaults. An LFS build
+using SPS does not have to follow that installer.
 
 Package categories are organizational. A package's `name` record is its
 identity; the category is not part of the name. Core uses these categories as
