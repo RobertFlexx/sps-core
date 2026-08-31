@@ -1,0 +1,13 @@
+name        iana-etc
+version     20260817
+release     1
+arch        any
+description IANA protocol and service number assignments
+
+source      https://github.com/Mic92/iana-etc/releases/download/${version}/iana-etc-${version}.tar.gz
+hash        sha256:457325e08305dda240579bf2cfddcc113941cb542b7c31a53f686e14ace75b76
+
+depend      filesystem
+
+install     mkdir -p "$PKG/etc"
+install     install -m 0644 protocols services "$PKG/etc"
