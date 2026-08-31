@@ -1,0 +1,11 @@
+name        linux-api-headers
+version     7.2.2
+release     1
+description Linux kernel API (UAPI) headers required to build glibc and toolchains
+
+source      https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-${version}.tar.xz
+hash        sha256:7d0e7ce14f98c43efe880cffbf354a59be45928fdf7170d7333c374ae91c0d83
+
+depend      filesystem
+
+install     make ARCH=x86_64 INSTALL_HDR_PATH="$PKG/usr" headers_install
