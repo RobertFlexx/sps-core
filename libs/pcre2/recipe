@@ -1,0 +1,13 @@
+name        pcre2
+version     10.47
+release     1
+description pcre2: Perl-compatible regular expressions
+
+source      https://github.com/PCRE2Project/pcre2/releases/download/pcre2-${version}/pcre2-${version}.tar.bz2
+hash        sha256:47fe8c99461250d42f89e6e8fdaeba9da057855d06eb7fc08d9ca03fd08d7bc7
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-static --enable-unicode --enable-pcre2-16 --enable-pcre2-32 --enable-jit
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

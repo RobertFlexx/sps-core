@@ -1,0 +1,14 @@
+name        libgcrypt
+version     1.12.3
+release     1
+description libgcrypt: general-purpose cryptographic library
+
+source      https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-${version}.tar.bz2
+hash        sha256:98d1b0b3202d2b03fa754a35aa3cbbfcf526a3260d8d2ee213748001b1043006
+
+depend      filesystem
+depend      libgpg-error
+
+configure   ./configure --prefix=/usr --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

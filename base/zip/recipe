@@ -1,0 +1,13 @@
+name        zip
+version     3.0
+release     1
+description zip: create ZIP archives
+
+source      https://deb.debian.org/debian/pool/main/z/zip/zip_${version}.orig.tar.gz
+hash        sha256:f0e8bb1f9b7eb0b01285495a2699df3a4b766784c1765a8f1aeedf63c0806369
+
+depend      filesystem
+
+configure   true
+build       make -f unix/Makefile generic CC="gcc -std=gnu89"
+install     make prefix="$PKG/usr" MANDIR="$PKG/usr/share/man/man1" -f unix/Makefile install

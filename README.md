@@ -10,10 +10,10 @@ identity; the category is not part of the name. Core uses these categories as
 packages are added:
 
 ```text
-base/  boot/  devel/  libs/  net/  system/
+base/  devel/  libs/  net/
 ```
 
-No category directory is kept empty.
+Category directories are created only when they contain a package.
 
 ## Configuration
 

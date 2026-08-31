@@ -1,0 +1,14 @@
+name        bison
+version     3.8.2
+release     1
+description GNU bison: parser generator
+
+source      https://ftp.gnu.org/gnu/bison/bison-${version}.tar.gz
+hash        sha256:06c9e13bdf7eb24d4ceb6b59205a4f67c2c7e7213119644430fe82fbd14a0abb
+
+depend      filesystem
+depend      m4
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,24 @@
+name        gnupg
+version     2.5.21
+release     1
+description GnuPG: GNU privacy guard
+
+source      https://gnupg.org/ftp/gcrypt/gnupg/gnupg-${version}.tar.bz2
+hash        sha256:e3af2c8caa46a66a9329fa7c6880af260451914d819595beabc2c26597b31352
+
+depend      filesystem
+depend      libgpg-error
+depend      libgcrypt
+depend      libassuan
+depend      libksba
+depend      npth
+depend      zlib
+depend      bzip2
+depend      sqlite
+depend      readline
+depend      ncurses
+depend      pinentry
+
+configure   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

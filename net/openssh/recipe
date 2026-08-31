@@ -1,0 +1,15 @@
+name        openssh
+version     10.5p1
+release     1
+description OpenSSH: remote login client and server
+
+source      https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${version}.tar.gz
+hash        sha256:d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11
+
+depend      filesystem
+depend      zlib
+depend      openssl
+
+configure   ./configure --prefix=/usr --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd --with-privsep-user=nobody --with-default-path=/usr/bin:/bin --with-superuser-path=/usr/sbin:/usr/bin:/sbin:/bin
+build       make -j"$MAKEJOBS"
+install     make install-nokeys DESTDIR="$PKG" && install -dm700 "$PKG/var/lib/sshd"

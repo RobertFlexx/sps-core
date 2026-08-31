@@ -1,0 +1,17 @@
+name        unzip
+version     6.0
+release     1
+description unzip: extract ZIP archives
+
+source      https://deb.debian.org/debian/pool/main/u/unzip/unzip_${version}.orig.tar.gz
+hash        sha256:036d96991646d0449ed0aa952e4fbe21b476ce994abc276e49d30e686708bd37
+
+depend      filesystem
+depend      bzip2
+builddep    patch
+
+prepare     patch -Np1 -i "$SRC/patches/unzip-6.0-consolidated_fixes-1.patch"
+prepare     patch -Np1 -i "$SRC/patches/unzip-6.0-gcc14-1.patch"
+configure   true
+build       make -f unix/Makefile generic CC="gcc -std=gnu89"
+install     make prefix="$PKG/usr" MANDIR="$PKG/usr/share/man/man1" -f unix/Makefile install

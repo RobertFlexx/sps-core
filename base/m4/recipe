@@ -1,0 +1,13 @@
+name        m4
+version     1.4.19
+release     1
+description GNU m4: macro processor
+
+source      https://ftp.gnu.org/gnu/m4/m4-${version}.tar.gz
+hash        sha256:3be4a26d825ffdfda52a56fc43246456989a3630093cced3fbddf4771ee58a70
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr CFLAGS="-O2 -std=gnu17"
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

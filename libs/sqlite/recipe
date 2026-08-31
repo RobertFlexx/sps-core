@@ -1,0 +1,15 @@
+name        sqlite
+version     3.53.4
+release     1
+description sqlite: self-contained SQL database engine
+
+source      https://www.sqlite.org/2026/sqlite-autoconf-3530400.tar.gz
+hash        sha256:0e9483900e92cd5de8fd48d16bf9200145a61f7fd5be542a5ac81d8a9516eb9c
+
+depend      filesystem
+depend      readline
+depend      ncurses
+
+configure   ./configure --prefix=/usr --disable-static --fts5
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
