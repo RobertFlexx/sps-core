@@ -1,6 +1,6 @@
 name        libxml2
 version     2.15.0
-release     1
+release     2
 description libxml2: XML toolkit
 
 source      https://download.gnome.org/sources/libxml2/2.15/libxml2-2.15.0.tar.xz
@@ -8,8 +8,7 @@ hash        sha256:5abc766497c5b1d6d99231f662e30c99402a90d03b06c67b62d6c1179dedd
 
 depend      filesystem
 depend      zlib
-depend      xz
 
-configure   meson setup build --prefix=/usr --buildtype=release -Dpython=false
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dpython=disabled -Ddocs=disabled -Dzlib=enabled -Dicu=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild

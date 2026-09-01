@@ -1,6 +1,6 @@
 name        pkgconf
 version     3.0.6
-release     1
+release     2
 description pkgconf: package compiler and linker flags
 
 source      https://distfiles.ariadne.space/pkgconf/pkgconf-3.0.6.tar.xz
@@ -8,6 +8,6 @@ hash        sha256:c88a653fbabfa2a5857a30f6b6ad6c40dbacc3b7c72cc066e5c7dc4571cbd
 
 depend      filesystem
 
-configure   ./configure --prefix=/usr --with-pkg-config-dir=/usr/lib/pkgconfig:/usr/share/pkgconfig
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --with-pkg-config-dir=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig --with-system-libdir=/usr/lib64 --with-system-includedir=/usr/include
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

@@ -1,6 +1,6 @@
 name        iputils
 version     20250605
-release     1
+release     2
 description iputils: ping and traceroute helpers
 
 source      https://github.com/iputils/iputils/archive/refs/tags/20250605.tar.gz
@@ -8,6 +8,6 @@ hash        sha256:19e680c9eef8c079da4da37040b5f5453763205b4edfb1e2c114de7790892
 
 depend      filesystem
 
-configure   meson setup build --prefix=/usr --buildtype=release
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild

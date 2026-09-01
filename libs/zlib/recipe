@@ -1,6 +1,6 @@
 name        zlib
 version     1.3.2
-release     1
+release     2
 description zlib: compression library
 
 source      https://zlib.net/fossils/zlib-${version}.tar.gz
@@ -8,6 +8,6 @@ hash        sha256:bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119
 
 depend      filesystem
 
-configure   ./configure --prefix=/usr
+configure   ./configure --prefix=/usr --libdir=/usr/lib64
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

@@ -1,6 +1,6 @@
 name        meson
 version     1.12.0
-release     1
+release     2
 arch        any
 description meson: Python-based build system
 
@@ -11,4 +11,7 @@ depend      filesystem
 depend      python
 depend      ninja
 
-install     python3 -m pip install --no-build-isolation --no-deps --prefix=/usr --root="$PKG" .
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/meson"
+install     cp -a mesonbuild meson.py "$PKG/usr/share/meson/"
+install     chmod 755 "$PKG/usr/share/meson/meson.py"
+install     ln -s ../share/meson/meson.py "$PKG/usr/bin/meson"

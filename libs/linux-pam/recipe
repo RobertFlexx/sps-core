@@ -1,6 +1,6 @@
 name        linux-pam
 version     1.7.2
-release     1
+release     2
 description linux-pam: Pluggable Authentication Modules
 
 source      https://github.com/linux-pam/linux-pam/releases/download/v1.7.2/Linux-PAM-1.7.2.tar.xz
@@ -10,6 +10,6 @@ depend      filesystem
 builddep    meson
 builddep    ninja
 
-configure   meson setup build --prefix=/usr --buildtype=release -Ddocs=disabled
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddocs=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild

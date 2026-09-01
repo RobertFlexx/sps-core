@@ -1,6 +1,6 @@
 name        dbus
 version     1.16.2
-release     2
+release     3
 description dbus: message bus
 
 source      https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
@@ -9,7 +9,7 @@ hash        sha256:0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb
 depend      filesystem
 depend      expat
 
-configure   meson setup build --prefix=/usr --buildtype=release -Dsystemd=disabled -Dselinux=disabled
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dsystemd=disabled -Dselinux=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
 install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
