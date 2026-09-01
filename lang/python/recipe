@@ -1,6 +1,6 @@
 name        python
 version     3.14.7
-release     1
+release     2
 description python: Python interpreter
 
 source      https://www.python.org/ftp/python/3.14.7/Python-3.14.7.tar.xz
@@ -15,6 +15,6 @@ depend      sqlite
 depend      libffi
 depend      expat
 
-configure   ./configure --prefix=/usr --enable-shared --with-ensurepip=install --with-system-expat --with-system-ffi
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --with-ensurepip=install --with-system-expat --with-system-ffi --enable-loadable-sqlite-extensions
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

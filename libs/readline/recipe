@@ -1,6 +1,6 @@
 name        readline
 version     8.3
-release     2
+release     3
 description GNU readline: line-editing and history library
 
 source      https://ftp.gnu.org/gnu/readline/readline-${version}.tar.gz
@@ -9,6 +9,6 @@ hash        sha256:fe5383204467828cd495ee8d1d3c037a7eba1389c22bc6a041f627976f906
 depend      filesystem
 depend      ncurses
 
-configure   ./configure --prefix=/usr --disable-static --with-curses
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --with-curses
 build       make -j"$MAKEJOBS" SHLIB_LIBS="-lncursesw"
 install     make SHLIB_LIBS="-lncursesw" install DESTDIR="$PKG"
