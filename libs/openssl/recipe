@@ -1,6 +1,6 @@
 name        openssl
 version     4.0.2
-release     1
+release     2
 description OpenSSL: cryptography and TLS toolkit
 
 source      https://github.com/openssl/openssl/releases/download/openssl-${version}/openssl-${version}.tar.gz
@@ -8,6 +8,6 @@ hash        sha256:736b467530f916737b7031310ccb21d8218c6229e61e8e160cd1d3458cd54
 
 depend      filesystem
 
-configure   ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib shared
+configure   ./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib64 shared no-docs
 build       make -j"$MAKEJOBS"
-install     make install DESTDIR="$PKG"
+install     make install_sw DESTDIR="$PKG"
