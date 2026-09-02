@@ -1,0 +1,15 @@
+name        binutils
+version     2.45
+release     1
+description binutils: GNU assembler, linker, and binary utilities
+
+source      https://ftp.gnu.org/gnu/binutils/binutils-2.45.tar.xz
+hash        sha256:c50c0e7f9cb188980e2cc97e4537626b1672441815587f1eab69d2a1bfbef5d2
+
+depend      filesystem
+depend      zlib
+depend      zstd
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-gold --enable-ld=default --enable-plugins --disable-werror --enable-64-bit-bfd
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,13 +1,13 @@
 name        ninja
 version     1.13.2
-release     1
+release     2
 description ninja: small build system
 
 source      https://github.com/ninja-build/ninja/archive/refs/tags/v1.13.2.tar.gz
 hash        sha256:974d6b2f4eeefa25625d34da3cb36bdcebe7fbce40f4c16ac0835fd1c0cbae17
 
 depend      filesystem
-depend      python
+builddep    python
 
 configure   python3 configure.py --bootstrap
 build       true

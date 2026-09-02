@@ -1,0 +1,12 @@
+name        lz4
+version     1.10.0
+release     1
+description lz4: fast lossless compression
+
+source      https://github.com/lz4/lz4/releases/download/v1.10.0/lz4-1.10.0.tar.gz
+hash        sha256:537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr LIBDIR=/usr/lib64
+install     make PREFIX=/usr LIBDIR=/usr/lib64 DESTDIR="$PKG" install

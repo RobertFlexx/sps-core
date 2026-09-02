@@ -1,0 +1,14 @@
+name        mpfr
+version     4.2.2
+release     1
+description mpfr: multiple-precision floating-point library
+
+source      https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.2.tar.xz
+hash        sha256:b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01
+
+depend      filesystem
+depend      gmp
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-shared
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

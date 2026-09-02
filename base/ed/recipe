@@ -1,0 +1,15 @@
+name        ed
+version     1.18
+release     1
+description ed: line-oriented text editor
+
+source      https://mirrors.kernel.org/gnu/ed/ed-1.18.tar.lz
+hash        sha256:aca8efad9800c587724a20b97aa8fc47e6b5a47df81606feaba831b074462b4f
+
+depend      filesystem
+builddep    lzip
+
+prepare     lzip -cd "$SRC/"ed-1.18.tar.lz | tar -x --strip-components=1
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

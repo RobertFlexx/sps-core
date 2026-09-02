@@ -1,6 +1,6 @@
 name        python
 version     3.14.7
-release     2
+release     3
 description python: Python interpreter
 
 source      https://www.python.org/ftp/python/3.14.7/Python-3.14.7.tar.xz
@@ -15,6 +15,14 @@ depend      sqlite
 depend      libffi
 depend      expat
 
-configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --with-ensurepip=install --with-system-expat --with-system-ffi --enable-loadable-sqlite-extensions
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared \
+            --with-ensurepip=install --with-system-expat --with-system-ffi \
+            --enable-loadable-sqlite-extensions \
+            --with-openssl=/usr --with-openssl-rpath=no
 build       make -j"$MAKEJOBS"
+build       if find Modules -name '*_failed.so' | grep -q .; then \
+            printf '%s\n' 'python: an extension failed to import' >&2; \
+            find Modules -name '*_failed.so' >&2; \
+            exit 1; fi
+build       ls Modules/_ssl.cpython-*.so >/dev/null
 install     make install DESTDIR="$PKG"

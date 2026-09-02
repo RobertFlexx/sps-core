@@ -1,0 +1,13 @@
+name        time
+version     1.9
+release     1
+description time: GNU time command
+
+source      https://ftp.gnu.org/gnu/time/time-1.9.tar.gz
+hash        sha256:fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
