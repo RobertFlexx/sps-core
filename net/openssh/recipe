@@ -1,6 +1,6 @@
 name        openssh
 version     10.5p1
-release     2
+release     3
 description OpenSSH: remote login client and server
 
 source      https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${version}.tar.gz
@@ -13,6 +13,11 @@ depend      openssl
 configure   ./configure --prefix=/usr --sysconfdir=/etc/ssh --with-privsep-path=/var/lib/sshd --with-privsep-user=nobody --with-default-path=/usr/bin:/bin --with-superuser-path=/usr/sbin:/usr/bin:/sbin:/bin
 build       make -j"$MAKEJOBS"
 install     make install-nokeys DESTDIR="$PKG" && install -dm700 "$PKG/var/lib/sshd"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/sshd" "$PKG/etc/s6/sv/sshd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/sshd.service" "$PKG/usr/lib/systemd/system/sshd.service"
 install     install -m 0755 "$SRC/files/openrc-sshd" "$PKG/etc/init.d/sshd"
+install     install -m 0755 "$SRC/files/runit-sshd" "$PKG/etc/sv/sshd/run"
+install     install -m 0755 "$SRC/files/s6-sshd" "$PKG/etc/s6/sv/sshd/run"
+install     install -m 0644 "$SRC/files/dinit-sshd" "$PKG/etc/dinit.d/sshd"
+install     install -m 0644 "$SRC/files/shepherd-sshd.scm" "$PKG/etc/shepherd.d/sshd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-sshd" "$PKG/etc/rc.d/init.d/sshd"

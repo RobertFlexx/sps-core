@@ -1,6 +1,6 @@
 name        eudev
 version     3.2.14
-release     2
+release     3
 description eudev: device manager
 
 source      https://github.com/eudev-project/eudev/releases/download/v3.2.14/eudev-3.2.14.tar.gz
@@ -13,3 +13,11 @@ conflict    systemd
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/udevd" "$PKG/etc/s6/sv/udevd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/udevd.service" "$PKG/usr/lib/systemd/system/udevd.service"
+install     install -m 0755 "$SRC/files/openrc-udevd" "$PKG/etc/init.d/udevd"
+install     install -m 0755 "$SRC/files/runit-udevd" "$PKG/etc/sv/udevd/run"
+install     install -m 0755 "$SRC/files/s6-udevd" "$PKG/etc/s6/sv/udevd/run"
+install     install -m 0644 "$SRC/files/dinit-udevd" "$PKG/etc/dinit.d/udevd"
+install     install -m 0644 "$SRC/files/shepherd-udevd.scm" "$PKG/etc/shepherd.d/udevd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-udevd" "$PKG/etc/rc.d/init.d/udevd"

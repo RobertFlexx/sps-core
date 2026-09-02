@@ -3,11 +3,10 @@ description="D-Bus system message bus"
 command="/usr/bin/dbus-daemon"
 command_args="--system --nofork --nopidfile --nosyslog"
 command_background="yes"
-pidfile="/run/dbus/dbus.pid"
+pidfile="/run/dbus.pid"
 
 depend() {
-	need localmount
-	provide dbus
+    need localmount
 }
 
 start_pre() {

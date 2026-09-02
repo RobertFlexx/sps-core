@@ -1,10 +1,11 @@
 #!/sbin/openrc-run
-description="DHCP client"
+description="DHCP client daemon"
 command="/usr/sbin/dhcpcd"
 command_args="--nobackground"
 command_background="yes"
 pidfile="/run/dhcpcd.pid"
 
 depend() {
-	provide net
+    use net
+    after net
 }

@@ -1,6 +1,6 @@
 name        dhcpcd
 version     10.2.4
-release     2
+release     3
 description dhcpcd: DHCP client
 
 source      https://github.com/NetworkConfiguration/dhcpcd/archive/refs/tags/v10.2.4.tar.gz
@@ -11,6 +11,11 @@ depend      filesystem
 configure   ./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/dhcpcd --dbdir=/var/lib/dhcpcd
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/dhcpcd" "$PKG/etc/s6/sv/dhcpcd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/dhcpcd.service" "$PKG/usr/lib/systemd/system/dhcpcd.service"
 install     install -m 0755 "$SRC/files/openrc-dhcpcd" "$PKG/etc/init.d/dhcpcd"
+install     install -m 0755 "$SRC/files/runit-dhcpcd" "$PKG/etc/sv/dhcpcd/run"
+install     install -m 0755 "$SRC/files/s6-dhcpcd" "$PKG/etc/s6/sv/dhcpcd/run"
+install     install -m 0644 "$SRC/files/dinit-dhcpcd" "$PKG/etc/dinit.d/dhcpcd"
+install     install -m 0644 "$SRC/files/shepherd-dhcpcd.scm" "$PKG/etc/shepherd.d/dhcpcd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-dhcpcd" "$PKG/etc/rc.d/init.d/dhcpcd"
