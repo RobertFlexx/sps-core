@@ -1,13 +1,17 @@
 name        file
 version     5.48
-release     1
+release     2
 description file: identify file types
 
 source      https://astron.com/pub/file/file-${version}.tar.gz
 hash        sha256:ed14656883b23a364b4057c05595d93252da9bc473d30106519519d0da141283
 
 depend      filesystem
+depend      zlib
+depend      bzip2
+depend      xz
+depend      zstd
 
-configure   ./configure --prefix=/usr
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-zlib --enable-bzlib --enable-xzlib --enable-zstdlib
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

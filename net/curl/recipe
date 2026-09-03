@@ -1,6 +1,6 @@
 name        curl
 version     8.21.0
-release     1
+release     2
 description curl: command line URL transfer tool
 
 source      https://github.com/curl/curl/releases/download/curl-8_21_0/curl-${version}.tar.gz
@@ -8,7 +8,8 @@ hash        sha256:d9b327997999045a24cda50f3983e69e51c516bd8be6ef9842fc7f99135e3
 
 depend      filesystem
 depend      openssl
+depend      zlib
 
-configure   ./configure --prefix=/usr --with-openssl --without-libpsl
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --with-openssl --with-zlib --without-libpsl
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

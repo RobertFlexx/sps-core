@@ -8,6 +8,8 @@ hash        sha256:5abc766497c5b1d6d99231f662e30c99402a90d03b06c67b62d6c1179dedd
 
 depend      filesystem
 depend      zlib
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dpython=disabled -Ddocs=disabled -Dzlib=enabled -Dicu=disabled
 build       meson compile -C build

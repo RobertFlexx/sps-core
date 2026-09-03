@@ -1,6 +1,6 @@
 name        kmod
 version     34.2
-release     1
+release     2
 description kmod: kernel module tools
 
 source      https://mirrors.edge.kernel.org/pub/linux/utils/kernel/kmod/kmod-34.2.tar.xz
@@ -11,6 +11,6 @@ depend      zlib
 depend      xz
 depend      zstd
 
-configure   ./configure --prefix=/usr
+configure   ./configure --prefix=/usr --libdir=/usr/lib64
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

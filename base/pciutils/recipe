@@ -1,6 +1,6 @@
 name        pciutils
 version     3.13.0
-release     1
+release     2
 description pciutils: lspci and setpci
 
 source      https://mirrors.edge.kernel.org/pub/software/utils/pciutils/pciutils-3.13.0.tar.xz
@@ -9,5 +9,5 @@ hash        sha256:77f11f78298502634d1af50308f15a5788629f6cf45cba376f5009aea4cb4
 depend      filesystem
 depend      zlib
 
-build       make -j"$MAKEJOBS" PREFIX=/usr SHAREDIR=/usr/share/hwdata SHARED=yes
-install     make PREFIX=/usr SHAREDIR=/usr/share/hwdata SHARED=yes DESTDIR="$PKG" install install-lib
+build       make -j"$MAKEJOBS" PREFIX=/usr LIBDIR=/usr/lib64 SHAREDIR=/usr/share/hwdata SHARED=yes
+install     make PREFIX=/usr LIBDIR=/usr/lib64 SHAREDIR=/usr/share/hwdata SHARED=yes DESTDIR="$PKG" install install-lib

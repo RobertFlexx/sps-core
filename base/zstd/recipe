@@ -1,6 +1,6 @@
 name        zstd
 version     1.5.7
-release     1
+release     2
 description Zstandard: fast real-time compression algorithm
 
 source      https://github.com/facebook/zstd/releases/download/v${version}/zstd-${version}.tar.gz
@@ -8,5 +8,5 @@ hash        sha256:eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6
 
 depend      filesystem
 
-build       make -j"$MAKEJOBS"
-install     make install PREFIX="$PKG/usr"
+build       make -j"$MAKEJOBS" PREFIX=/usr LIBDIR=/usr/lib64
+install     make PREFIX=/usr LIBDIR=/usr/lib64 DESTDIR="$PKG" install

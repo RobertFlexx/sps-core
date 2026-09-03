@@ -1,6 +1,6 @@
 name        python
 version     3.14.7
-release     4
+release     5
 description python: Python interpreter
 
 source      https://www.python.org/ftp/python/3.14.7/Python-3.14.7.tar.xz
@@ -14,7 +14,11 @@ depend      readline
 depend      sqlite
 depend      libffi
 depend      expat
+depend      bzip2
+depend      xz
 
+# Cache builds install only declared depends, not base-system. CPython still
+# ships bz2.py when libbz2 is missing, then Node's configure dies on import.
 configure   ./configure --prefix=/usr --libdir=/usr/lib64 --with-platlibdir=lib64 \
             --enable-shared --with-ensurepip=install --with-system-expat \
             --with-system-ffi --enable-loadable-sqlite-extensions \
@@ -24,5 +28,8 @@ build       if find Modules -name '*_failed.so' | grep -q .; then \
             printf '%s\n' 'python: an extension failed to import' >&2; \
             find Modules -name '*_failed.so' >&2; \
             exit 1; fi
-build       ls Modules/_ssl.cpython-*.so >/dev/null
+build       for _pyext in _ssl _hashlib _bz2 _lzma _sqlite3 _ctypes _posixsubprocess zlib pyexpat readline _curses; do \
+            ls Modules/${_pyext}*.so >/dev/null 2>&1 || { \
+            printf '%s\n' "python: required extension ${_pyext} was not built" >&2; \
+            exit 1; }; done
 install     make install DESTDIR="$PKG"

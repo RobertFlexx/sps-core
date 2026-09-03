@@ -8,6 +8,8 @@ hash        sha256:0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb
 
 depend      filesystem
 depend      expat
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dsystemd=disabled -Dselinux=disabled
 build       meson compile -C build

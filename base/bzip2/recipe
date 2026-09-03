@@ -1,6 +1,6 @@
 name        bzip2
 version     1.0.8
-release     1
+release     2
 description bzip2: block-sorting file compressor
 
 source      https://sourceware.org/pub/bzip2/bzip2-${version}.tar.gz
@@ -8,5 +8,19 @@ hash        sha256:ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2
 
 depend      filesystem
 
+# Stock `make install PREFIX=` only ships a static library under usr/lib.
+# Isolated Python and other -lbz2 users look in lib64 for a shared object.
+prepare     sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+prepare     sed -i 's@(PREFIX)/man@(PREFIX)/share/man@g' Makefile
+build       make -f Makefile-libbz2_so
 build       make -j"$MAKEJOBS"
 install     make install PREFIX="$PKG/usr"
+install     mkdir -p "$PKG/usr/lib64"
+install     cp -a libbz2.so.1.0.8 "$PKG/usr/lib64/"
+install     ln -sf libbz2.so.1.0.8 "$PKG/usr/lib64/libbz2.so.1.0"
+install     ln -sf libbz2.so.1.0.8 "$PKG/usr/lib64/libbz2.so"
+install     if [ -f bzip2-shared ]; then cp bzip2-shared "$PKG/usr/bin/bzip2"; chmod 755 "$PKG/usr/bin/bzip2"; fi
+install     ln -sf bzip2 "$PKG/usr/bin/bzcat"
+install     ln -sf bzip2 "$PKG/usr/bin/bunzip2"
+install     rm -f "$PKG/usr/lib/libbz2.a"
+install     rmdir "$PKG/usr/lib" 2>/dev/null || true
