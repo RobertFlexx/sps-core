@@ -73,3 +73,7 @@ reviewed. Work that has not passed those checks belongs on a testing branch.
 
 Update one package in place and commit it with a package-specific message, for
 example `zlib: update to 1.3.2`.
+
+Software that is not ready for extra belongs in
+[sps-community](https://github.com/RobertFlexx/sps-community). That collection
+is opt-in and is not enabled by `setup` or `mkiso`.
